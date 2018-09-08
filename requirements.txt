@@ -1,0 +1,6 @@
+gTTS
+playsound
+pillow
+pytesseract
+opencv-python
+PyQt5
