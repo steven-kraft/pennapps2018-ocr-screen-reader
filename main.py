@@ -1,5 +1,4 @@
-from PIL import Image
-from PIL import ImageGrab
+from PIL import Image, ImageGrab
 import pytesseract
 import cv2
 import os
@@ -11,6 +10,9 @@ import tkinter as tk
 import numpy as np
 from time import sleep
 import keyboard
+import pystray
+from pystray import MenuItem as item
+from threading import Thread
 
 count = 0
 
@@ -76,6 +78,18 @@ open = False
 def start():
     global open
     open = True
+
+def quit():
+    os._exit(1)
+
+def icon_thread():
+    image = Image.open("tray_mag.png")
+    menu = (item('Activate (Alt + X)', start), item('Quit', quit))
+    icon = pystray.Icon("name", image, "OCR Screen Reader", menu)
+    icon.run()
+
+thread = Thread(target = icon_thread)
+thread.start()
 
 keyboard.add_hotkey("alt+x", start)
 
