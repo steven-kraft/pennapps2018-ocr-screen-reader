@@ -9,9 +9,16 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 import sys
 import tkinter as tk
 import numpy as np
+from time import sleep
+import keyboard
+
+count = 0
 
 def tts(msg):
-    file = "message.mp3"
+    global count
+    file = "message" + str(count) + ".mp3"
+    count += 1
+    if msg == "": msg = "No Message to Speak"
     gTTS(text=msg, lang='en').save(file)
     playsound(file)
     os.remove(file)
@@ -64,9 +71,19 @@ class Snipper(QtWidgets.QWidget):
         img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
         readImage("image.png")
 
+open = False
 
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    window = Snipper()
-    window.show()
-    sys.exit(app.exec_())
+def start():
+    global open
+    open = True
+
+keyboard.add_hotkey("alt+x", start)
+
+app = QtWidgets.QApplication(sys.argv)
+
+while True:
+    if open:
+        open = False
+        window = Snipper()
+        window.show()
+        app.exec_()

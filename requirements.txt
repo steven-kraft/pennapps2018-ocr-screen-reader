@@ -4,3 +4,4 @@ pillow
 pytesseract
 opencv-python
 PyQt5
+keyboard
