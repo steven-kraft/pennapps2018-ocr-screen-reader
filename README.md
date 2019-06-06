@@ -12,7 +12,7 @@ Right-click tray icon to activate or press **Alt + X**
 
 Steve Kraft https://github.com/steven-kraft
 
-Noah Eng https://github.com/jdmnoah
+Noah Eng https://github.com/noaheng
 
 Josh Coneby https://github.com/jmconeby
 
